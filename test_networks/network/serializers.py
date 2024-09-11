@@ -21,8 +21,4 @@ class DeviceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Device
         fields = '__all__'
-
-    # def create(self, validated_data):
-    #     obj, _ = Device.objects.get_or_create(**validated_data)
-    #     return obj
         
