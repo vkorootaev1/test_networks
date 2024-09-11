@@ -1,23 +1,13 @@
 from django.db import models
-import uuid
 
 
-class AbstractUUIDModel(models.Model):
-    """ Абстрактная модель с первичным ключом в формате <UUID> """
-    
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, verbose_name='Идентификатор', editable=False)
-    
-    class Meta:
-        abstract = True
-
-
-class Device(AbstractUUIDModel):
+class Device(models.Model):
     """ Описание устройства """
     
     name = models.CharField(max_length=150, verbose_name='Наименование устройства')
     parent = models.ForeignKey('self', verbose_name='Родительское устройство', on_delete=models.PROTECT, null=True, blank=True, related_name='children', db_column='parent_id')
     type = models.ForeignKey('DeviceType', verbose_name='Тип устройства', on_delete=models.PROTECT, db_column='device_type_id')
-    date_add = models.DateTimeField(verbose_name='Дата добавления устройства')
+    date_add = models.DateTimeField(verbose_name='Дата добавления устройства', auto_now_add=True)
     tech_place = models.ForeignKey('TechPlace', verbose_name='Местонахождение устройства', on_delete=models.PROTECT, db_column='tech_place_id')
     
     def __str__(self):
@@ -29,7 +19,7 @@ class Device(AbstractUUIDModel):
         verbose_name_plural = 'Устройства'       
     
     
-class DeviceType(AbstractUUIDModel):
+class DeviceType(models.Model):
     """ Описание типа устройства """
     
     name = models.CharField(max_length=150, verbose_name='Наименование типа устройства')
@@ -43,7 +33,7 @@ class DeviceType(AbstractUUIDModel):
         verbose_name_plural = 'Типы устройств'
         
     
-class TechPlace(AbstractUUIDModel):
+class TechPlace(models.Model):
     """ Описание местонахождения устройства """
     
     address = models.TextField(verbose_name='Адрес местонахождение устройства', db_column='address')
