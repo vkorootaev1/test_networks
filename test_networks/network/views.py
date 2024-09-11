@@ -139,14 +139,14 @@ class DeviceTypeRetrieveAPIView(AbstractSingularAPIView):
         
  
 class TechPlaceAPIView(AbstractPluralApiView):
-    """ Представление для метстонахождения устройства """
+    """ Представление для меcтонахождения устройства """
 
     model = TechPlace    
     serializer = TechPlaceSerializer  
     
 
 class TechPlaceRetrieveAPIView(AbstractSingularAPIView):
-    """ Представление для конкретного устройства """
+    """ Представление для меcтонахождения устройства """
     
     model = TechPlace
     serializer = TechPlaceSerializer       
