@@ -98,7 +98,7 @@ class AbstractPluralApiView(AbstractAPiView):
     
 
 class AbstractSingularAPIView(AbstractAPiView):
-    """ Абстрактный класс для множества записей (c указанием в url <pk>)  """
+    """ Абстрактный класс для одиночных записей (c указанием в url <pk>)  """
     
     # 3
     def get(self, request, pk=None):       
